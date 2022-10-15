@@ -1,0 +1,221 @@
+:root {
+    --circle-radius: 50%;
+    --bg-color: #d1e1aa;
+    --top-color: #F4982B;
+    --bubble-сolor: radial-gradient(50% 50% at 50% 50%, var(--bg-color) 30%, #2680D3 100%);
+}
+.container-tractor{
+    width: 200px;
+    height: 200px;
+    top: 50px;
+    background: var(--bg-color);
+    position: relative;
+    margin: auto;
+}
+.carBody{
+    position: absolute;
+    left: 68px;
+    top: 102px;
+}
+.upperBody{
+    position: absolute;
+    width: 79px;
+    height: 20px;
+    background: #9FCD94;
+}
+.triangle-upperBody {
+    position: absolute;
+	width: 0;
+	height: 0;
+    left: 79px;
+    top: 0px;
+	border-bottom: 20px solid #9FCD94; 
+	border-right: 20px solid transparent;	
+}
+.lowerBody{
+    position: absolute;
+    width: 79px;
+    height: 20px;
+    left: 0px;
+    top: 20px;
+    background: #78B569;
+}
+.triangle-lowerBody {
+    position: absolute;
+	width: 0;
+	height: 0;
+    left: 79px;
+    top: 20px;
+	border-top: 20px solid #78B569; 
+	border-right: 20px solid transparent;			
+}
+.leftWheel{
+    position: absolute;
+    left: 31px;
+    top: 128px;
+}
+.bigLeftWheel{
+    position: absolute;
+    width: 59px;
+    height: 59px;
+    background: #633E13;
+    border-radius: var(--circle-radius);
+}
+.middleLeftWheel{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    left: 7px;
+    top: 7px;
+    background: #EED5B9;
+    border-radius: var(--circle-radius);
+}
+.smallLeftWheel{
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: 26px;
+    top: 26px;
+    background: #FF0000;
+    border-radius: var(--circle-radius);
+}
+.rightWheel{
+    position: absolute;
+    left: 124px;
+    top: 142px;
+}
+.bigRightWheel{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: #633E13;
+    border-radius: var(--circle-radius);
+}
+.middleRightWheel{
+    position: absolute;
+    width: 33px;
+    height: 33px;
+    left: 6px;
+    top: 6px;
+    background: #EED5B9;
+    border-radius: var(--circle-radius);
+}
+.smallRightWheel{
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    left: 19px;
+    top: 19px;
+    background: #FF0000;
+    border-radius: var(--circle-radius);
+}
+.bottom{
+    position: absolute;
+    width: 88px;
+    height: 29px;
+    left: 61px;
+    top: 142px;
+    background: linear-gradient(180deg, #CA784A 5%, #E4BBA4 25%, #FFFFFF 50%, #E4BBA4 75%, #CA784A 95%);
+}
+.container-tractor .leftStick{
+    position: absolute;
+    width: 8px;
+    height: 69px;
+    left: 40px;
+    top: 73px;
+    background: #F4B30C;
+}
+.container-tractor .rightStick{
+    position: absolute;
+    width: 8px;
+    height: 29px;
+    left: 75px;
+    top: 73px;
+    background: #F4B30C;
+}
+.top{
+    position: absolute;
+    left: 30px;
+    top: 60px;
+
+}
+.top-block{
+    position: absolute;
+    width: 70px;
+    height: 13px;
+    background: var(--top-color);
+}
+.triangle-top {
+    position: absolute;
+	width: 0;
+	height: 0;
+    left: 70px;
+    top: 0px;
+	border-top: 13px solid var(--top-color); 
+	border-right: 13px solid transparent;			
+}
+.pipe{
+    position: absolute;
+    width: 10px;
+    height: 37px;
+    left: 123px;
+    top: 65px;
+    background: linear-gradient(270deg, #F4982B 0%, #FFFFFF 20%, #F4982B 50%);
+}
+.lowerBubble{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    left: 125px;
+    top: 49px;
+    background: var(--bubble-сolor);
+    border-radius: var(--circle-radius);
+}
+.middleBubble{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 128px;
+    top: 29px;
+    background: var(--bubble-сolor);
+    border-radius: var(--circle-radius);
+}
+.bigBubble{
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    left: 147px;
+    top: 18px;
+    background: var(--bubble-сolor);
+    border-radius: var(--circle-radius);
+
+}
+.seat{
+    position: absolute;
+    left: 30px;
+    top: 76px;
+}
+.outerSeat{
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    left: 18px;
+    top: 10px;
+    background: #FF0000;
+    border-radius: var(--circle-radius);
+}
+.innerSeat{
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    left: 25px;
+    top: 12px;
+    background: var(--bg-color);
+    border-radius: var(--circle-radius);
+}
+.topSeat{
+    position: absolute;
+    width: 75px;
+    height: 19px;
+    background: var(--bg-color);
+}

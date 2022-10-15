@@ -1,0 +1,158 @@
+h1 {
+    text-align: center;
+}
+
+.baseContainer {
+    display: flex;
+    align-items: center; 
+    align-content: flex-start;
+    justify-content:center;
+    flex-wrap: wrap;
+
+    margin-top: 3%;
+}
+
+.container-boy {
+    background-image: url("Картинки/toy1.jpg");
+    background-color: #cccccc;
+    background-size: 200px;
+
+    width: 200px;
+    height: 200px;
+    display: flex;  /* https://stackoverflow.com/questions/52937708/why-does-applying-a-css-filter-on-the-parent-break-the-child-positioning */
+
+    overflow: hidden;
+}
+
+.container-boy:hover .boy {
+    animation-name: rightMoveBoy, rotate;
+    animation-fill-mode: forwards, forwards;
+    animation-duration: 5s, 1s;
+    animation-delay: 0ms, 5s;
+}
+
+.container-boy:hover #toysOptText {
+    animation-name: rightMoveText;
+    animation-fill-mode: forwards;
+    animation-duration: 5s;
+}
+
+.container-boy:hover {
+    animation: sepia 1s forwards;
+    animation-delay: 6s;
+}
+
+.container-boy:active:hover .spiner {
+    animation-play-state: running;
+}
+
+.container-boy:not(:active):hover .spiner {
+    animation-play-state: paused;
+}
+
+.container-boy:hover #toysOptText {
+    display: block;
+}
+
+.container-boy:active:hover #funToysText {
+    display: block; 
+}
+
+.boy {
+    position: relative;
+    top: 65px;
+    left: -140px;
+}
+
+#boyImage {
+    position: absolute;
+    width: 90px;
+    height: 140px;
+    z-index: 1;
+}
+
+.toy {
+    position: absolute;
+    right: 20px;
+    z-index: 0;
+}
+
+.spiner {
+    width: 60px;
+    height: 60px;
+
+    position: absolute;
+    left: 80px;
+    z-index: 1;
+
+    animation: spin 1s linear infinite;
+    animation-play-state: paused;
+}
+
+.stick {
+    width: 70px;
+    height: 70px;
+
+    position: absolute;
+    top: 20px;
+    left: 65px;
+
+    transform: scaleX(-1);
+}
+
+.container-boy pre {
+    font-size: 18px;
+}
+
+#toysOptText {
+    position: relative;
+    top: 160px;
+    left: 10px;
+
+    display: none;
+}
+
+#funToysText {
+    position: relative;
+    top: 20px;
+    right: 100px;
+    font-size: small;
+
+    transform: rotate(-30deg);
+
+    color: white;
+
+    display: none;
+}
+
+@keyframes rightMoveBoy {
+    from {left: -140px;}
+    to {left: 100px;}
+}
+
+@keyframes rightMoveText {
+    from {left: -140px;}
+    to {left: 10px}
+}
+
+@keyframes rotate {
+    100% {
+        transform: scaleX(-1);
+        left: 220px;
+    }
+}
+
+@keyframes sepia {
+    100% {
+        filter: sepia(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
