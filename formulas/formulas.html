@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="../css/responsive.css" rel="stylesheet" />
+    <!-- logo style -->
+    <link href="../css/logo.css" rel="stylesheet" />
+
+    <script src="formulas.js"></script>
+    <link rel="stylesheet" href="formulas.css">
+    <title>Formulas</title>
+</head>
+<body>
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-11 offset-lg-1">
+              <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="../index.html">
+                  <div class="logo">
+                    <div class="leftCircle"></div>
+                    <div class="rightCircle"></div>
+                    <div class="leftInnerCircle"></div>
+                    <div class="rightInnerCircle"></div>
+                    <div class="backgroundSquare"></div>
+                    <div class="leftEdge"></div>
+                    <div class="rightEdge"></div>
+                    <div class="leftStick"></div>
+                    <div class="rightStick"></div>
+                    <div class="square"></div>
+                  </div>
+                  <span>
+                    Milana Ryzhova
+                  </span>
+                </a>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+  
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                    <ul class="navbar-nav  ">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="../about.html"> About me</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="../portfolio.html"> Portfolio </a>
+                      </li>
+                    </ul>
+                  </div>
+  
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end header section -->
+    <div class="input-block">
+        <label for="name">Количество формул: </label>
+        <input type="number" id="formulas-count-input" min="1" max="3" onchange="limiter(this)">
+        <button onclick="start()">Выбрать</button>
+    </div>
+    <div id="formula-1" class="formula-result">
+        <img src="images/formula_1.JPG" alt="formula 1">
+        <p>=</p>
+        <p id="formula-1-result-text"></p>
+    </div>
+    <div id="formula-2" class="formula-result">
+        <img src="images/formula_2.JPG" alt="formula 2">
+        <p>=</p>
+        <p id="formula-2-result-text"></p>
+    </div>
+    <div id="formula-3" class="formula-result">
+        <img src="images/formula_3.JPG" alt="formula 3">
+        <p>=</p>
+        <p id="formula-3-result-text"></p>
+    </div>
+
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+</body>
+</html>
