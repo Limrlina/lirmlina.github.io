@@ -1,0 +1,55 @@
+html, body, .mainContainer {
+    height:100%;
+}
+
+body {
+    background-color: white;
+}
+
+#phrasesOutOfStockWarning {
+    text-align: center;
+    display: none;
+}
+
+.mainContainer {
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    background-color: red;
+}
+
+#dynamicZone {
+    background-color: blueviolet;
+    margin: auto;
+    height: 100%;
+    position: relative;
+}
+
+.buttonsContainer {
+    margin: auto;
+    background-color: yellow;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.phrase {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    transform: translate(-50%,-50%); /* Чтобы pivot элемента был в центре */
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+
+    transition: all .2s ease-in-out;
+    font-size: 12px;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.phrase:hover { 
+    transform: translate(-50%, -50%) scale(1.2);
+}
