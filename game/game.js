@@ -990,11 +990,6 @@ class SwapOrderGame extends BaseGame
         if (!this.isStarted || this.isEnded) {
             return;
         }
-        if (this.checkWin()) {
-            this.totalPoints += this.goodMovePoints;
-            this.stop(true);
-            return;
-        }
         if (this.isTimerEnded()) {
             this.stop(false);
             return;
@@ -1015,6 +1010,12 @@ class SwapOrderGame extends BaseGame
 
             this.firstCardSelected = null;
             this.secondCardSelected = null;
+
+            if (this.checkWin()) {
+                this.totalPoints += this.goodMovePoints;
+                this.stop(true);
+                return;
+            }
         }
 
         this.updateTimer(deltaTime);      
