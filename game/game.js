@@ -51,7 +51,7 @@ function preload ()
     this.load.image("turnOnSoundButton", "./assets/turnOnSound.png");
     this.load.image("exitButton", "./assets/exit.png");
 	this.load.image('buttonGeneral', './assets/buttonGeneral2.png');
-    this.load.image('buttonHighlighted', 'assets/buttonHighlighted2.png');
+    this.load.image('buttonHighlighted', './assets/buttonHighlighted2.png');
     this.load.image("gameTitle", "./assets/gameTitle.png");
 
 	this.load.image('avatar1', './assets/avatar1.png');
@@ -1218,7 +1218,7 @@ function sortDictionaryByValue(dict) {
 
 class Button extends Phaser.GameObjects.Image {
     constructor(scene, x, y, texture, frame) {
-        texture = "buttonGeneral";
+        texture = "buttonHighlighted";
         super(scene, x, y, texture, frame);
         this.setDisplaySize(260, 50);
         this.setInteractive();
