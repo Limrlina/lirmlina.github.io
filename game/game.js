@@ -109,13 +109,13 @@ function startMiniGame(miniGameId, scene)
         currentMiniGame.hide();
     }
     if (miniGameId == NumberOrderGame.sId) {
-        currentMiniGame = new NumberOrderGame(scene, 5, 50);
+        currentMiniGame = new NumberOrderGame(scene, 5, 20);
     }
     else if (miniGameId == SwapOrderGame.sId) {
-        currentMiniGame = new SwapOrderGame(scene, 5, 50);
+        currentMiniGame = new SwapOrderGame(scene, 5, 20);
     }
     else if(miniGameId == TwoAreasGame.sId) {
-        currentMiniGame = new TwoAreasGame(scene, 8, 50);
+        currentMiniGame = new TwoAreasGame(scene, 8, 20);
     }
     currentMiniGame.start();
     showInGameMenu(scene);
@@ -382,8 +382,8 @@ function showLeaderboardDialog(scene, minigameId)
             }
 
             if (recordsDict.length == 1) {
-                leaderboardElements.push(scene.add.image(300, 250, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
-                leaderboardElements.push(scene.add.text(250, 237, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                leaderboardElements.push(scene.add.image(350, 250, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                leaderboardElements.push(scene.add.text(300, 237, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
                 break;
             }
             else if (recordsDict.length == 2) {
@@ -392,17 +392,17 @@ function showLeaderboardDialog(scene, minigameId)
                 }
 
                 if (i == 0) {
-                    leaderboardElements.push(scene.add.image(300, 240, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
-                    leaderboardElements.push(scene.add.text(250, 227, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                    leaderboardElements.push(scene.add.image(350, 240, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                    leaderboardElements.push(scene.add.text(300, 227, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
                 }
                 if (i == 1) {
-                    leaderboardElements.push(scene.add.image(300, 280, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
-                    leaderboardElements.push(scene.add.text(250, 267, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                    leaderboardElements.push(scene.add.image(350, 280, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                    leaderboardElements.push(scene.add.text(300, 267, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
                 }
             }
             else if (recordsDict.length >= 3) {
-                leaderboardElements.push(scene.add.image(300, 360 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
-                leaderboardElements.push(scene.add.text(250, 347 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                leaderboardElements.push(scene.add.image(350, 360 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                leaderboardElements.push(scene.add.text(300, 347 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
             }
         }
     }
@@ -906,7 +906,7 @@ class NumberOrderGame extends BaseGame
         for (let i = 0; i < this.cardsCount; i++) {
             let cardNumber;
             do {
-                cardNumber = randomRange(0, 100);
+                cardNumber = randomRange(1, 100);
             } while(this.numbersToAnswerArray.includes(cardNumber));
             const spaceBetweenCards = 100;
             let card = this.scene.add.cm_card((400 - spaceBetweenCards / 2 * (this.cardsCount - 1)) + spaceBetweenCards * i, 350, 0.07, cardNumber, false);
@@ -1025,7 +1025,7 @@ class SwapOrderGame extends BaseGame
         for (let i = 0; i < this.cardsCount; i++) {
             let cardNumber;
             do {
-                cardNumber = randomRange(0, 100);
+                cardNumber = randomRange(1, 100);
             } while(this.numbersToAnswerArray.includes(cardNumber));
             const spaceBetweenCards = 100;
             let card = this.scene.add.cm_card((400 - spaceBetweenCards / 2 * (this.cardsCount - 1)) + spaceBetweenCards * i, 350, 0.07, cardNumber, false);
@@ -1173,7 +1173,7 @@ class TwoAreasGame extends BaseGame
         for (let i = 0; i < this.cardsCount; i++) {
             let cardNumber;
             do {
-                cardNumber = randomRange(0, 100);
+                cardNumber = randomRange(1, 100);
             } while(this.numbersToAnswerArray.includes(cardNumber));
             const spaceBetweenCards = 70;
             let card = this.scene.add.cm_card((400 - spaceBetweenCards / 2 * (this.cardsCount - 1)) + spaceBetweenCards * i, 535, 0.04, cardNumber, true);
@@ -1200,18 +1200,23 @@ class TwoAreasGame extends BaseGame
                 this.totalPoints += this.badMovePoints;
                 return;
             }
+            this.totalPoints += this.goodMovePoints;
+            this.scene.input.setDraggable(card, false);
+            card.list[0].isInteractive = false;
+            dropSound.play();
+            this.numbersToAnswerArray.shift();
         }
         else if (Phaser.Geom.Intersects.RectangleToRectangle(card.getBounds(), this.oddZone.getBounds())) {
             if (card.list[0].number % 2 == 0) {
                 this.totalPoints += this.badMovePoints;
                 return;
             }
+            this.totalPoints += this.goodMovePoints;
+            this.scene.input.setDraggable(card, false);
+            card.list[0].isInteractive = false;
+            dropSound.play();
+            this.numbersToAnswerArray.shift();
         }
-        this.totalPoints += this.goodMovePoints;
-        this.scene.input.setDraggable(card, false);
-        card.list[0].isInteractive = false;
-        dropSound.play();
-        this.numbersToAnswerArray.shift();
     }
 
     hide() {
