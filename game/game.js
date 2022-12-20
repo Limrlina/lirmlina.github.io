@@ -42,26 +42,26 @@ var isSoundOn = true;
 // Start MainLoop
 function preload ()
 {
-    this.load.image("background", "./assets/cells.png");
-    this.load.image("card", "./assets/card.png");
-    this.load.image("oddZone", "./assets/oddZone.png");
-    this.load.image("evenZone", "./assets/evenZone.png");
-    this.load.image("restartButton", "./assets/restart.png");
-    this.load.image("turnOffSoundButton", "./assets/turnOffSound.png");
-    this.load.image("turnOnSoundButton", "./assets/turnOnSound.png");
-    this.load.image("exitButton", "./assets/exit.png");
-	this.load.image('buttonGeneral', './assets/buttonGeneral2.png');
-    this.load.image('buttonHighlighted', './assets/buttonHighlighted2.png');
-    this.load.image("gameTitle", "./assets/gameTitle.png");
+    this.load.image("background", "assets/cells.png");
+    this.load.image("card", "assets/card.png");
+    this.load.image("oddZone", "assets/oddZone.png");
+    this.load.image("evenZone", "assets/evenZone.png");
+    this.load.image("restartButton", "assets/restart.png");
+    this.load.image("turnOffSoundButton", "assets/turnOffSound.png");
+    this.load.image("turnOnSoundButton", "assets/turnOnSound.png");
+    this.load.image("exitButton", "assets/exit.png");
+	this.load.image('buttonGeneral', 'assets/buttonGeneral2.png');
+    this.load.image('buttonHighlighted', 'assets/buttonHighlighted2.png');
+    this.load.image("gameTitle", "assets/gameTitle.png");
 
-	this.load.image('avatar1', './assets/avatar1.png');
-	this.load.image('avatar2', './assets/avatar2.png');
-	this.load.image('avatar3', './assets/avatar3.png');
+	this.load.image('avatar1', 'assets/avatar1.png');
+	this.load.image('avatar2', 'assets/avatar2.png');
+	this.load.image('avatar3', 'assets/avatar3.png');
 
-    this.load.audio('win', './assets/win.wav');
-    this.load.audio("lose", "./assets/lose.wav");
-    this.load.audio("buttonClick", "./assets/buttonClick.wav");
-    this.load.audio("drop", "./assets/drop.wav");
+    this.load.audio('win', 'assets/win.wav');
+    this.load.audio("lose", "assets/lose.wav");
+    this.load.audio("buttonClick", "assets/buttonClick.wav");
+    this.load.audio("drop", "assets/drop.wav");
 }
 
 function create ()
@@ -199,7 +199,7 @@ function showGreetDialog(scene)
 {
     let gameTitleImg = scene.add.image(400, 200, "gameTitle");
     greetDialogElement = document.getElementById("login");
-    greetDialogElement.style = `position: absolute; top: ${350}px; left: ${config.width / 3}px; display: block;`;
+    greetDialogElement.style = `position: relative; top: ${350}px; left: ${config.width / 3}px; display: block;`;
 
     let userIdInputFieldElement = document.getElementById("username");
 
@@ -372,14 +372,38 @@ function showLeaderboardDialog(scene, minigameId)
     if (miniGameProgress != null) {
         let recordsDict = sortDictionaryByValue(miniGameProgress);
 
-        let i = 0;
+        
+
+        let i = -1;
         for (const [key, value] of Object.entries(recordsDict)) {
+            i++;
             if (i == 3) {
                 break;
             }
-            leaderboardElements.push(scene.add.image(350, 360 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
-            leaderboardElements.push(scene.add.text(300, 347 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
-            i++;
+
+            if (recordsDict.length == 1) {
+                leaderboardElements.push(scene.add.image(300, 250, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                leaderboardElements.push(scene.add.text(250, 237, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                break;
+            }
+            else if (recordsDict.length == 2) {
+                if (i == 2) {
+                    break;
+                }
+
+                if (i == 0) {
+                    leaderboardElements.push(scene.add.image(300, 240, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                    leaderboardElements.push(scene.add.text(250, 227, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                }
+                if (i == 1) {
+                    leaderboardElements.push(scene.add.image(300, 280, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                    leaderboardElements.push(scene.add.text(250, 267, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+                }
+            }
+            else if (recordsDict.length >= 3) {
+                leaderboardElements.push(scene.add.image(300, 360 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, loadUserData(value[0])["avatar"]).setOrigin(0.5).setDisplaySize(35, 35));
+                leaderboardElements.push(scene.add.text(250, 347 + (i - (recordsDict.length > 3 ? 3 : recordsDict.length)) * 50, `${i + 1}.   ${value[0]}: ${value[1]}`, style));
+            }
         }
     }
     else {
@@ -935,6 +959,8 @@ class SwapOrderGame extends BaseGame
     firstCardSelected;
     secondCardSelected;
 
+    selectedCardPositionDeltaY = 20;
+
     goodMovePoints = 700;
     totalPoints;
 
@@ -984,6 +1010,9 @@ class SwapOrderGame extends BaseGame
             this.numbersToAnswerArray[firstCardNumberIndex] = this.secondCardSelected.list[0].number;
             this.numbersToAnswerArray[secondCardNumberIndex] = this.firstCardSelected.list[0].number;
 
+            this.firstCardSelected.y += this.selectedCardPositionDeltaY;
+            this.secondCardSelected.y += this.selectedCardPositionDeltaY;
+
             this.firstCardSelected = null;
             this.secondCardSelected = null;
         }
@@ -1014,16 +1043,19 @@ class SwapOrderGame extends BaseGame
     makeMove(card) {
         if (this.firstCardSelected != null && this.firstCardSelected == card) {
             this.firstCardSelected = null;
+            card.y += this.selectedCardPositionDeltaY;
             console.log("Cancel first card selection");
             return;
         } 
         if (this.firstCardSelected == null) {
             this.firstCardSelected = card;
+            card.y -= this.selectedCardPositionDeltaY;
             console.log("Select first card");
             return;
         }
         if (this.secondCardSelected == null) {
             this.secondCardSelected = card;
+            card.y -= this.selectedCardPositionDeltaY;
             console.log("Select second card");
         }
     }
@@ -1218,7 +1250,7 @@ function sortDictionaryByValue(dict) {
 
 class Button extends Phaser.GameObjects.Image {
     constructor(scene, x, y, texture, frame) {
-        texture = "buttonHighlighted";
+        texture = "buttonGeneral";
         super(scene, x, y, texture, frame);
         this.setDisplaySize(260, 50);
         this.setInteractive();
