@@ -1,0 +1,46 @@
+#container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#uploaded_file {
+    display: none;
+}
+
+#file-label {
+    background-color: rgb(151, 148, 148);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#file-label:hover {
+    background-color: #6e6c6c;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    max-width: 600px;
+}
+
+#submitButton {
+    background-color: rgb(10, 169, 18);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background-color: #0a8c0a;
+}
+
+.quantityField {
+    width: 60px;
+    height: 20px;
+    margin-bottom: 1px;
+}
+  
